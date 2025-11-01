@@ -1,5 +1,9 @@
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -70,7 +74,7 @@ public class GameBoard extends JFrame implements ActionListener {
         }
     }
     public boolean checkIfMoveIsPossible(int i, JButton emptyButton) {
-        boolean movieIsPossible = switch (i) {
+        boolean moveIsPossible = switch (i) {
             // button 1
             case 0 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 2 & 3
@@ -98,7 +102,7 @@ public class GameBoard extends JFrame implements ActionListener {
             default -> false;
         };
 
-        return movieIsPossible;
+        return moveIsPossible;
     }
 
 
