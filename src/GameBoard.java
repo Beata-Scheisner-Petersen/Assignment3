@@ -77,11 +77,20 @@ public class GameBoard extends JFrame implements ActionListener {
         JButton emptyButton = findEmptyButton();
         JButton clicked = (JButton) e.getSource();
 
-        System.out.println("Clicked: " + ((JButton) e.getSource()).getText());
-
-        if (!isEmpty(clicked)) {
-            moveButton(clicked, emptyButton);
-
+        for (int i = 0; i < buttonList.size(); i++) {
+            if (buttonList.get(i) == clicked) {
+                if (buttonList.get(i + 1) != buttonList.get(15)) {
+                    if (buttonList.get(i + 1) == emptyButton) {
+                        moveButton(clicked, emptyButton);
+                        break;
+                    }
+                } else {
+                    if (buttonList.get(i - 1) == emptyButton) {
+                        moveButton(clicked, emptyButton);
+                        break;
+                    }
+                }
+            }
         }
 
 
