@@ -66,51 +66,54 @@ public class GameBoard extends JFrame implements ActionListener {
         String buttonNumber = clickedButton.getText();
         if (!isEmpty(clickedButton)) {
             emptyButton.setText(buttonNumber);
-            // ev byta platser i lista
+            clickedButton.setText(" ");
         }
-        clickedButton.setText(" ");
+    }
+    public boolean checkIfMoveIsPossible(int i, JButton emptyButton) {
+        boolean movieIsPossible = switch (i) {
+            // button 1
+            case 0 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 2 & 3
+            case 1, 2 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 4
+            case 3 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 5
+            case 4 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i -4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 6 & 7
+            case 5, 6 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 8
+            case 7 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 9
+            case 8 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 10 & 11
+            case 9, 10 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 12
+            case 11 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            // button 13
+            case 12 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
+            // button 14 & 15
+            case 13, 14 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
+            // button "16"
+            case 15 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
+            default -> false;
+        };
+
+        return movieIsPossible;
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // moveButtons((JButton) e.getSource());
         JButton emptyButton = findEmptyButton();
         JButton clicked = (JButton) e.getSource();
-        Point emptyP = emptyButton.getLocation();
 
         for (int i = 0; i < buttonList.size(); i++) {
-            if (buttonList.get(i) == clicked) {
-                if (i != 15) {
-                    if (buttonList.get(i + 1) == emptyButton) {
-                        moveButton(clicked, emptyButton);
-                        i = 0;
-                        break;
-                    } else  if (buttonList.get(i - 1) == emptyButton) {
-                        moveButton(clicked, emptyButton);
-                        i = 0;
-                        break;
-                    }
-                } else if (buttonList.get(i - 1) == emptyButton) {
-                        moveButton(clicked, emptyButton);
-                        i = 0;
-                        break;
+            if (buttonList.get(i).equals(clicked)) {
+                if (checkIfMoveIsPossible(i, emptyButton)) {
+                    moveButton(clicked, emptyButton);
                 }
             }
-
         }
-
-        System.out.println("Clicked: " + ((JButton) e.getSource()).getText());
-
-//        if (buttonList.get(i + 1) == emptyButton) {
-//            moveButton(clicked, emptyButton);
-//            break;
-//        }
-
-//        if (buttonList.get(i - 1) == emptyButton) {
-//            moveButton(clicked, emptyButton);
-//            break;
-//        }
     }
 
 
