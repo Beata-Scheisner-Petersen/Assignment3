@@ -66,6 +66,7 @@ public class GameBoard extends JFrame implements ActionListener {
         String buttonNumber = clickedButton.getText();
         if (!isEmpty(clickedButton)) {
             emptyButton.setText(buttonNumber);
+            // ev byta platser i lista
         }
         clickedButton.setText(" ");
     }
@@ -76,24 +77,40 @@ public class GameBoard extends JFrame implements ActionListener {
         // moveButtons((JButton) e.getSource());
         JButton emptyButton = findEmptyButton();
         JButton clicked = (JButton) e.getSource();
+        Point emptyP = emptyButton.getLocation();
 
         for (int i = 0; i < buttonList.size(); i++) {
             if (buttonList.get(i) == clicked) {
-                if (buttonList.get(i + 1) != buttonList.get(15)) {
+                if (i != 15) {
                     if (buttonList.get(i + 1) == emptyButton) {
                         moveButton(clicked, emptyButton);
+                        i = 0;
                         break;
-                    }
-                } else {
-                    if (buttonList.get(i - 1) == emptyButton) {
+                    } else  if (buttonList.get(i - 1) == emptyButton) {
                         moveButton(clicked, emptyButton);
+                        i = 0;
                         break;
                     }
+                } else if (buttonList.get(i - 1) == emptyButton) {
+                        moveButton(clicked, emptyButton);
+                        i = 0;
+                        break;
                 }
             }
+
         }
 
+        System.out.println("Clicked: " + ((JButton) e.getSource()).getText());
 
+//        if (buttonList.get(i + 1) == emptyButton) {
+//            moveButton(clicked, emptyButton);
+//            break;
+//        }
+
+//        if (buttonList.get(i - 1) == emptyButton) {
+//            moveButton(clicked, emptyButton);
+//            break;
+//        }
     }
 
 
