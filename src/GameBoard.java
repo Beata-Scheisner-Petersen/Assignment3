@@ -56,6 +56,8 @@ public class GameBoard extends JFrame implements ActionListener {
             buttonList.add(b15);
             northPanel.add(b15);
             b15.addActionListener(this);
+        } else {
+            // Random board
         }
 
         southPanel.add(text);
