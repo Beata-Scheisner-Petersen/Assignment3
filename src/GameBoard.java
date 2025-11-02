@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* Todo
-* Fix a reporting board that is easy to solve
-* Fix Function for discover that user solved the board + win message
+* Fix a reporting board that is easy to solve - Done // Beata
+* Fix Function for discover that user solved the board + win message - Done // Beata
 * Fix that buttons are in a random order
 * Check if code need optimize
+* * Fix bigger buttons
 * Fix a border around buttons
 * Fix button board + color */
 
