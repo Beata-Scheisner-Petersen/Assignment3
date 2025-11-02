@@ -30,8 +30,6 @@ public class GameBoard extends JFrame implements ActionListener {
     List<JButton> buttonList = new ArrayList<>();
 
     public GameBoard() {
-
-
         this.add(mainPanel);
 
         mainPanel.setLayout(new BorderLayout());
@@ -58,6 +56,8 @@ public class GameBoard extends JFrame implements ActionListener {
             buttonList.add(b15);
             northPanel.add(b15);
             b15.addActionListener(this);
+        } else {
+            // Random board
         }
 
         southPanel.add(text);
@@ -69,12 +69,10 @@ public class GameBoard extends JFrame implements ActionListener {
     }
 
     public boolean isEmpty(JButton button) {
-
         return button.getText().equals(" ");
     }
 
     public JButton findEmptyButton() {
-
         for (JButton emptyButton : buttonList) {
             if (isEmpty(emptyButton))
                 return emptyButton;
@@ -127,22 +125,20 @@ public class GameBoard extends JFrame implements ActionListener {
             case 15 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
             default -> false;
         };
-
         return moveIsPossible;
     }
+
     public boolean gameFinish() {
         boolean finish = true;
         for (int i = 0; i < buttonList.size(); i++) {
-
             if (!(buttonList.get(i).getText().equals(String.valueOf(i + 1)))) {
-                if (i == 15 && (!(buttonList.get(i).getText().equals(String.valueOf(" "))))) {
+                if (i == 15 && (!(buttonList.get(i).getText().equals(" ")))) {
                     finish = false;
                 }
             }
         }
         return finish;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -160,7 +156,7 @@ public class GameBoard extends JFrame implements ActionListener {
         if (gameFinish()) {
             text.setText(" Congratulation, you solve the board! ");
             text.setBorder(new EtchedBorder());
-            text.setFont(new Font(Font.SERIF, Font.TRUETYPE_FONT, 12));
+            text.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
             text.getFont();
         }
     }
