@@ -69,12 +69,10 @@ public class GameBoard extends JFrame implements ActionListener {
     }
 
     public boolean isEmpty(JButton button) {
-
         return button.getText().equals(" ");
     }
 
     public JButton findEmptyButton() {
-
         for (JButton emptyButton : buttonList) {
             if (isEmpty(emptyButton))
                 return emptyButton;
@@ -127,7 +125,6 @@ public class GameBoard extends JFrame implements ActionListener {
             case 15 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
             default -> false;
         };
-
         return moveIsPossible;
     }
 
