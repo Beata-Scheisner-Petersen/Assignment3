@@ -11,14 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* Todo
-* Fix a reporting board that is easy to solve - Done // Beata
-* Fix Function for discover that user solved the board + win message - Done // Beata
-* Fix that buttons are in a random order + new game // Valeria
-* Check if code need optimize
-* * Fix bigger buttons // Beata
-* Fix a border around buttons // Beata
-* Fix button board + color
-* Check if board is solvable */
+ * Fix a reporting board that is easy to solve - Done // Beata
+ * Fix Function for discover that user solved the board + win message - Done // Beata
+ * Fix that buttons are in a random order + new game // Valeria
+ * Check if code need optimize
+ * * Fix bigger buttons // Beata
+ * Fix a border around buttons // Beata
+ * Fix button board + color
+ * Check if board is solvable
+ */
 
 
 public class GameBoard extends JFrame implements ActionListener {
@@ -54,46 +55,37 @@ public class GameBoard extends JFrame implements ActionListener {
         if (reportBoard) {
             for (int i = 1; i <= buttonNumbers - 1; i++) {
                 JButton button = new JButton(String.valueOf(i));
-
-                button.setPreferredSize(new Dimension(100, 100));
-                button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-                button.setBorder(new LineBorder(Color.BLACK, 1));
-
-                boardPanel.add(button);
-                button.addActionListener(this);
-                buttonList.add(button);
+                addStyledButton(button);
             }
             JButton empty = new JButton(" ");
-
-            empty.setPreferredSize(new Dimension(100, 100));
-            empty.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-            empty.setBorder(new LineBorder(Color.BLACK, 1));
-
-            buttonList.add(empty);
-            boardPanel.add(empty);
-            empty.addActionListener(this);
+            addStyledButton(empty);
 
             JButton b15 = new JButton("15");
-            b15.setPreferredSize(new Dimension(100, 100));
-            b15.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-            b15.setBorder(new LineBorder(Color.BLACK, 1));
+            addStyledButton(b15);
 
-            buttonList.add(b15);
-            boardPanel.add(b15);
-
-            b15.addActionListener(this);
         } else {
             // Random board
         }
 
         southSouthPanel.add(text);
-        southNorthPanel.add (newGame);
+        southNorthPanel.add(newGame);
 
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
+    public void addStyledButton(JButton button) {
+        button.setPreferredSize(new Dimension(100, 100));
+        button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        button.setBorder(new LineBorder(Color.BLACK, 1));
+        boardPanel.add(button);
+        buttonList.add(button);
+        button.addActionListener(this);
+    }
+
+
 
     public boolean isEmpty(JButton button) {
         return button.getText().equals(" ");
