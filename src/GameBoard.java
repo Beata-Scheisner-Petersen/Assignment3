@@ -3,9 +3,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -25,7 +24,8 @@ import java.util.List;
 public class GameBoard extends JFrame implements ActionListener {
     JPanel mainPanel = new JPanel();
     JPanel southPanel = new JPanel();
-    JPanel northPanel = new JPanel(new GridLayout(4, 4));
+    JPanel northPanel = new JPanel(new BorderLayout());
+    JPanel boardPanel = new JPanel(new GridLayout(4, 4));
     JLabel text = new JLabel(" ", JLabel.CENTER);
     List<JButton> buttonList = new ArrayList<>();
 
@@ -33,8 +33,13 @@ public class GameBoard extends JFrame implements ActionListener {
         this.add(mainPanel);
 
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(northPanel, BorderLayout.NORTH);
+        mainPanel.add(northPanel, BorderLayout.CENTER);
+
+        southPanel.setPreferredSize(new Dimension(200, 200));
         mainPanel.add(southPanel, BorderLayout.SOUTH);
+
+        boardPanel.setBorder(new LineBorder(Color.BLACK, 1));
+        northPanel.add(boardPanel, BorderLayout.CENTER);
 
         int buttonNumbers = 15;
 
@@ -43,18 +48,37 @@ public class GameBoard extends JFrame implements ActionListener {
         if (reportBoard) {
             for (int i = 1; i <= buttonNumbers - 1; i++) {
                 JButton button = new JButton(String.valueOf(i));
-                northPanel.add(button);
+
+                button.setPreferredSize(new Dimension(100, 100));
+                button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+                button.setBorder(new LineBorder(Color.BLACK, 1));
+                button.setBackground(Color.WHITE);
+
+                boardPanel.add(button);
                 button.addActionListener(this);
                 buttonList.add(button);
             }
             JButton empty = new JButton(" ");
+
+            empty.setPreferredSize(new Dimension(100, 100));
+            empty.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+            empty.setBorder(new LineBorder(Color.BLACK, 1));
+            empty.setBackground(Color.WHITE);
+
             buttonList.add(empty);
-            northPanel.add(empty);
+            boardPanel.add(empty);
             empty.addActionListener(this);
 
             JButton b15 = new JButton("15");
+            b15.setPreferredSize(new Dimension(100, 100));
+            b15.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+            b15.setBorder(new LineBorder(Color.BLACK, 1));
+            b15.setBorder(new EtchedBorder(EtchedBorder.RAISED));
+            b15.setBackground(Color.WHITE);
+
             buttonList.add(b15);
-            northPanel.add(b15);
+            boardPanel.add(b15);
+
             b15.addActionListener(this);
         } else {
             // Random board
@@ -154,10 +178,10 @@ public class GameBoard extends JFrame implements ActionListener {
             }
         }
         if (gameFinish()) {
-            text.setText(" Congratulation, you solve the board! ");
+            text.setSize(50, 50);
             text.setBorder(new EtchedBorder());
-            text.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
-            text.getFont();
+            text.setFont(new Font(Font.SERIF, Font.PLAIN, 24));
+            text.setText(" \nCongratulation, you solve the board! ");
         }
     }
 
