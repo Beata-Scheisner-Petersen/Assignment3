@@ -23,11 +23,15 @@ import java.util.List;
 
 public class GameBoard extends JFrame implements ActionListener {
     JPanel mainPanel = new JPanel();
-    JPanel southPanel = new JPanel();
-    JPanel northPanel = new JPanel(new BorderLayout());
     JPanel boardPanel = new JPanel(new GridLayout(4, 4));
+    JPanel northPanel = new JPanel(new BorderLayout());
+    JPanel southPanel = new JPanel(new BorderLayout());
+    JPanel southSouthPanel = new JPanel();
+    JPanel southNorthPanel = new JPanel();
+
     JLabel text = new JLabel(" ", JLabel.CENTER);
     List<JButton> buttonList = new ArrayList<>();
+    JButton newGame = new JButton("New game");
 
     public GameBoard() {
         this.add(mainPanel);
@@ -37,6 +41,8 @@ public class GameBoard extends JFrame implements ActionListener {
 
         southPanel.setPreferredSize(new Dimension(200, 200));
         mainPanel.add(southPanel, BorderLayout.SOUTH);
+        southPanel.add(southSouthPanel, BorderLayout.SOUTH);
+        southPanel.add(southNorthPanel, BorderLayout.NORTH);
 
         boardPanel.setBorder(new LineBorder(Color.BLACK, 1));
         northPanel.add(boardPanel, BorderLayout.CENTER);
@@ -84,7 +90,8 @@ public class GameBoard extends JFrame implements ActionListener {
             // Random board
         }
 
-        southPanel.add(text);
+        southSouthPanel.add(text);
+        southNorthPanel.add (newGame);
 
         pack();
         setVisible(true);
