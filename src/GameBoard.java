@@ -2,7 +2,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +25,7 @@ public class GameBoard extends JFrame implements ActionListener {
     JPanel mainPanel = new JPanel();
     JPanel southPanel = new JPanel();
     JPanel northPanel = new JPanel(new GridLayout(4, 4));
-    JLabel test = new JLabel(" ");
+    JLabel text = new JLabel(" ", JLabel.CENTER);
     List<JButton> buttonList = new ArrayList<>();
 
 
@@ -58,7 +60,7 @@ public class GameBoard extends JFrame implements ActionListener {
             b15.addActionListener(this);
         }
 
-        southPanel.add(test);
+        southPanel.add(text);
 
         pack();
         setVisible(true);
@@ -128,6 +130,18 @@ public class GameBoard extends JFrame implements ActionListener {
 
         return moveIsPossible;
     }
+    public boolean gameFinish() {
+        boolean finish = true;
+        for (int i = 0; i < buttonList.size(); i++) {
+
+            if (!(buttonList.get(i).getText().equals(String.valueOf(i + 1)))) {
+                if (i == 15 && (!(buttonList.get(i).getText().equals(String.valueOf(" "))))) {
+                    finish = false;
+                }
+            }
+        }
+        return finish;
+    }
 
 
     @Override
@@ -142,6 +156,11 @@ public class GameBoard extends JFrame implements ActionListener {
                     break;
                 }
             }
+        }
+        if (gameFinish()) {
+            text.setText(" Congratulation, you solve the board! ");
+            text.setBorder(new EtchedBorder());
+            text.setFont(new Font("Aptos", Font.BOLD, 12));
         }
     }
 
