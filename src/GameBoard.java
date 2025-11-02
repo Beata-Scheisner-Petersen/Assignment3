@@ -14,11 +14,12 @@ import java.util.List;
 /* Todo
 * Fix a reporting board that is easy to solve - Done // Beata
 * Fix Function for discover that user solved the board + win message - Done // Beata
-* Fix that buttons are in a random order
+* Fix that buttons are in a random order + new game // Valeria
 * Check if code need optimize
-* * Fix bigger buttons
-* Fix a border around buttons
-* Fix button board + color */
+* * Fix bigger buttons // Beata
+* Fix a border around buttons // Beata
+* Fix button board + color
+* Check if board is solvable */
 
 
 public class GameBoard extends JFrame implements ActionListener {
@@ -27,7 +28,6 @@ public class GameBoard extends JFrame implements ActionListener {
     JPanel northPanel = new JPanel(new GridLayout(4, 4));
     JLabel text = new JLabel(" ", JLabel.CENTER);
     List<JButton> buttonList = new ArrayList<>();
-
 
     public GameBoard() {
 
@@ -160,7 +160,8 @@ public class GameBoard extends JFrame implements ActionListener {
         if (gameFinish()) {
             text.setText(" Congratulation, you solve the board! ");
             text.setBorder(new EtchedBorder());
-            text.setFont(new Font("Aptos", Font.BOLD, 12));
+            text.setFont(new Font(Font.SERIF, Font.TRUETYPE_FONT, 12));
+            text.getFont();
         }
     }
 
