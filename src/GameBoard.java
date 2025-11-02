@@ -158,7 +158,7 @@ public class GameBoard extends JFrame implements ActionListener {
         if (gameFinish()) {
             text.setText(" Congratulation, you solve the board! ");
             text.setBorder(new EtchedBorder());
-            text.setFont(new Font(Font.SERIF, Font.TRUETYPE_FONT, 12));
+            text.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
             text.getFont();
         }
     }
