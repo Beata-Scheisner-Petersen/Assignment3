@@ -138,6 +138,7 @@ public class GameBoard extends JFrame implements ActionListener {
             if (buttonList.get(i).equals(clicked)) {
                 if (checkIfMoveIsPossible(i, emptyButton)) {
                     moveButton(clicked, emptyButton);
+                    break;
                 }
             }
         }
