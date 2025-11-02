@@ -52,6 +52,7 @@ public class GameBoard extends JFrame implements ActionListener {
                 button.setPreferredSize(new Dimension(100, 100));
                 button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
                 button.setBorder(new LineBorder(Color.BLACK, 1));
+                button.setBackground(Color.WHITE);
 
                 boardPanel.add(button);
                 button.addActionListener(this);
@@ -62,6 +63,8 @@ public class GameBoard extends JFrame implements ActionListener {
             empty.setPreferredSize(new Dimension(100, 100));
             empty.setFont(new Font(Font.SERIF, Font.BOLD, 20));
             empty.setBorder(new LineBorder(Color.BLACK, 1));
+            empty.setBackground(Color.WHITE);
+
             buttonList.add(empty);
             boardPanel.add(empty);
             empty.addActionListener(this);
@@ -70,6 +73,9 @@ public class GameBoard extends JFrame implements ActionListener {
             b15.setPreferredSize(new Dimension(100, 100));
             b15.setFont(new Font(Font.SERIF, Font.BOLD, 20));
             b15.setBorder(new LineBorder(Color.BLACK, 1));
+            b15.setBorder(new EtchedBorder(EtchedBorder.RAISED));
+            b15.setBackground(Color.WHITE);
+
             buttonList.add(b15);
             boardPanel.add(b15);
 
