@@ -30,8 +30,6 @@ public class GameBoard extends JFrame implements ActionListener {
     List<JButton> buttonList = new ArrayList<>();
 
     public GameBoard() {
-
-
         this.add(mainPanel);
 
         mainPanel.setLayout(new BorderLayout());
@@ -130,6 +128,7 @@ public class GameBoard extends JFrame implements ActionListener {
 
         return moveIsPossible;
     }
+
     public boolean gameFinish() {
         boolean finish = true;
         for (int i = 0; i < buttonList.size(); i++) {
@@ -142,7 +141,6 @@ public class GameBoard extends JFrame implements ActionListener {
         }
         return finish;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
