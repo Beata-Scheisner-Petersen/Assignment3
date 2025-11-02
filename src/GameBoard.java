@@ -22,7 +22,7 @@ public class GameBoard extends JFrame implements ActionListener {
     JPanel mainPanel = new JPanel();
     JPanel southPanel = new JPanel();
     JPanel northPanel = new JPanel(new GridLayout(4, 4));
-    JLabel test = new JLabel("test");
+    JLabel test = new JLabel(" ");
     List<JButton> buttonList = new ArrayList<>();
 
 
@@ -35,22 +35,28 @@ public class GameBoard extends JFrame implements ActionListener {
         mainPanel.add(northPanel, BorderLayout.NORTH);
         mainPanel.add(southPanel, BorderLayout.SOUTH);
 
-
         int buttonNumbers = 15;
 
+        boolean reportBoard = true;
 
-        for (int i = 1; i <= buttonNumbers; i++) {
-            JButton button = new JButton(String.valueOf(i));
-            northPanel.add(button);
-            button.addActionListener(this);
-            buttonList.add(button);
+        if (reportBoard) {
+            for (int i = 1; i <= buttonNumbers - 1; i++) {
+                JButton button = new JButton(String.valueOf(i));
+                northPanel.add(button);
+                button.addActionListener(this);
+                buttonList.add(button);
+            }
+            JButton empty = new JButton(" ");
+            buttonList.add(empty);
+            northPanel.add(empty);
+            empty.addActionListener(this);
 
+            JButton b15 = new JButton("15");
+            buttonList.add(b15);
+            northPanel.add(b15);
+            b15.addActionListener(this);
         }
 
-        JButton empty = new JButton(" ");
-        buttonList.add(empty);
-        northPanel.add(empty);
-        empty.addActionListener(this);
         southPanel.add(test);
 
         pack();
