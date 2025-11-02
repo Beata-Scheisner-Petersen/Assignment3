@@ -24,17 +24,23 @@ import java.util.List;
 
 public class GameBoard extends JFrame implements ActionListener {
     JPanel mainPanel = new JPanel();
-    JPanel southPanel = new JPanel();
+    JPanel southPanel = new JPanel(new BorderLayout());
+    JPanel southSouthPanel = new JPanel();
+    JPanel southNorthPanel = new JPanel();
     JPanel northPanel = new JPanel(new GridLayout(4, 4));
     JLabel text = new JLabel(" ", JLabel.CENTER);
     List<JButton> buttonList = new ArrayList<>();
-
+    JButton newGame = new JButton("New game");
     public GameBoard() {
+
+
         this.add(mainPanel);
 
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(northPanel, BorderLayout.NORTH);
         mainPanel.add(southPanel, BorderLayout.SOUTH);
+        southPanel.add(southSouthPanel, BorderLayout.SOUTH);
+        southPanel.add(southNorthPanel, BorderLayout.NORTH);
 
         int buttonNumbers = 15;
 
@@ -56,11 +62,10 @@ public class GameBoard extends JFrame implements ActionListener {
             buttonList.add(b15);
             northPanel.add(b15);
             b15.addActionListener(this);
-        } else {
-            // Random board
         }
 
-        southPanel.add(text);
+        southSouthPanel.add(text);
+        southNorthPanel.add (newGame);
 
         pack();
         setVisible(true);
