@@ -132,8 +132,7 @@ public class GameBoard extends JFrame implements ActionListener {
     public boolean gameFinish() {
         boolean finish = true;
         for (int i = 0; i < buttonList.size(); i++) {
-            String button = buttonList.get(i).getText();
-            String test = String.valueOf(i + 1);
+
             if (!(buttonList.get(i).getText().equals(String.valueOf(i + 1)))) {
                 if (i == 15 && (!(buttonList.get(i).getText().equals(String.valueOf(" "))))) {
                     finish = false;
