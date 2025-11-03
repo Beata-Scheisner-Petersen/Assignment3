@@ -1,14 +1,13 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /* Todo
  * Fix a reporting board that is easy to solve - Done // Beata
@@ -23,18 +22,23 @@ import java.util.List;
 
 
 public class GameBoard extends JFrame implements ActionListener {
+
+    private final static int BUTTON_NUMBERS = 15;
     JPanel mainPanel = new JPanel();
     JPanel boardPanel = new JPanel(new GridLayout(4, 4));
     JPanel northPanel = new JPanel(new BorderLayout());
     JPanel southPanel = new JPanel(new BorderLayout());
     JPanel southSouthPanel = new JPanel();
     JPanel southNorthPanel = new JPanel();
-
     JLabel text = new JLabel(" ", JLabel.CENTER);
     List<JButton> buttonList = new ArrayList<>();
+    List<Integer> randomNumbers = new ArrayList<>();
     JButton newGame = new JButton("New game");
+    Random random = new Random();
+
 
     public GameBoard() {
+
         this.add(mainPanel);
 
         mainPanel.setLayout(new BorderLayout());
@@ -48,24 +52,33 @@ public class GameBoard extends JFrame implements ActionListener {
         boardPanel.setBorder(new LineBorder(Color.BLACK, 1));
         northPanel.add(boardPanel, BorderLayout.CENTER);
 
-        int buttonNumbers = 15;
+        newGame.addActionListener(this);
+        newGame.setPreferredSize(new Dimension(200, 50));
+        newGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        newGame.setBorder(new LineBorder(Color.BLACK, 1));
 
-        boolean reportBoard = true;
+//        boolean reportBoard = true;
+//
+//        if (reportBoard) {
+//            for (int i = 1; i <= BUTTON_NUMBERS - 1; i++) {
+//                JButton button = new JButton(String.valueOf(i));
+//                addStyledButton(button);
+//            }
+//            JButton empty = new JButton(" ");
+//            addStyledButton(empty);
+//
+//            JButton b15 = new JButton("15");
+//            addStyledButton(b15);
+//
+//        } else  {
 
-        if (reportBoard) {
-            for (int i = 1; i <= buttonNumbers - 1; i++) {
-                JButton button = new JButton(String.valueOf(i));
-                addStyledButton(button);
-            }
-            JButton empty = new JButton(" ");
-            addStyledButton(empty);
-
-            JButton b15 = new JButton("15");
-            addStyledButton(b15);
-
-        } else {
-            // Random board
+        // Create empty board
+        for (int i = 0; i <= BUTTON_NUMBERS; i++) {
+            JButton button = new JButton();
+            addStyledButton(button);
+            randomNumbers.add(i);
         }
+        setNewGameBoard();
 
         southSouthPanel.add(text);
         southNorthPanel.add(newGame);
@@ -76,6 +89,20 @@ public class GameBoard extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+
+    public void setNewGameBoard() {
+        Collections.shuffle(randomNumbers);//flyttar om elementen i listan
+        for (int i = 0; i <= BUTTON_NUMBERS; i++) {
+            int number = randomNumbers.get(i);
+            JButton button = buttonList.get(i);
+            if (number == 0) {
+                button.setText(" ");
+            } else {
+                button.setText(String.valueOf(number));
+            }
+        }
+    }
+
     public void addStyledButton(JButton button) {
         button.setPreferredSize(new Dimension(100, 100));
         button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -84,7 +111,6 @@ public class GameBoard extends JFrame implements ActionListener {
         buttonList.add(button);
         button.addActionListener(this);
     }
-
 
 
     public boolean isEmpty(JButton button) {
@@ -163,6 +189,11 @@ public class GameBoard extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton emptyButton = findEmptyButton();
         JButton clicked = (JButton) e.getSource();
+
+        if (newGame == clicked) {
+            setNewGameBoard();
+            return;
+        }
 
         for (int i = 0; i < buttonList.size(); i++) {
             if (buttonList.get(i).equals(clicked)) {
