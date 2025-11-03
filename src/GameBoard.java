@@ -43,14 +43,34 @@ public class GameBoard extends JFrame implements ActionListener {
 
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(northPanel, BorderLayout.CENTER);
-
-        southPanel.setPreferredSize(new Dimension(200, 200));
         mainPanel.add(southPanel, BorderLayout.SOUTH);
+
+        northPanel.add(boardPanel, BorderLayout.CENTER);
+        northPanel.add(northNorthPanel, BorderLayout.NORTH);
+        northPanel.add(northSouthPanel, BorderLayout.SOUTH);
+        northPanel.add(northEastPanel, BorderLayout.EAST);
+        northPanel.add(northWestPanel, BorderLayout.WEST);
+        northPanel.setBorder(new LineBorder(Color.BLACK, 3));
+
+        northNorthPanel.setPreferredSize(new Dimension(10, 10));
+        northSouthPanel.setPreferredSize(new Dimension(10, 10));
+        northEastPanel.setPreferredSize(new Dimension(10, 10));
+        northWestPanel.setPreferredSize(new Dimension(10, 10));
+
+        northNorthPanel.setBackground(Color.RED);
+        northSouthPanel.setBackground(Color.RED);
+        northWestPanel.setBackground(Color.RED);
+        northEastPanel.setBackground(Color.RED);
+
+        southPanel.setPreferredSize(new Dimension(100, 100));
         southPanel.add(southSouthPanel, BorderLayout.SOUTH);
         southPanel.add(southNorthPanel, BorderLayout.NORTH);
 
         boardPanel.setBorder(new LineBorder(Color.BLACK, 1));
-        northPanel.add(boardPanel, BorderLayout.CENTER);
+        boardPanel.setMaximumSize(new Dimension(100, 100));
+
+
+
 
         newGame.addActionListener(this);
         newGame.setPreferredSize(new Dimension(200, 50));
@@ -104,7 +124,7 @@ public class GameBoard extends JFrame implements ActionListener {
     }
 
     public void addStyledButton(JButton button) {
-        button.setPreferredSize(new Dimension(100, 100));
+        button.setPreferredSize(new Dimension(80, 80));
         button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         button.setBorder(new LineBorder(Color.BLACK, 1));
         boardPanel.add(button);
@@ -124,7 +144,6 @@ public class GameBoard extends JFrame implements ActionListener {
         }
         return null;
     }
-
 
     public void moveButton(JButton clickedButton, JButton emptyButton) {
         String buttonNumber = clickedButton.getText();
@@ -204,9 +223,9 @@ public class GameBoard extends JFrame implements ActionListener {
             }
         }
         if (gameFinish()) {
-            text.setSize(50, 50);
+            text.setSize(20, 20);
             text.setBorder(new EtchedBorder());
-            text.setFont(new Font(Font.SERIF, Font.PLAIN, 24));
+            text.setFont(new Font(Font.SERIF, Font.PLAIN, 22));
             text.setText(" \nCongratulation, you solve the board! ");
         }
     }
