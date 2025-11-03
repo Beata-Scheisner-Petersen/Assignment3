@@ -76,8 +76,6 @@ public class GameBoard extends JFrame implements ActionListener {
         boardPanel.setBorder(new LineBorder(Color.BLACK, 1));
         boardPanel.setMaximumSize(new Dimension(100, 100));
 
-
-
         newGame.addActionListener(this);
         newGame.setPreferredSize(new Dimension(200, 50));
         newGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -116,7 +114,6 @@ public class GameBoard extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-
     public void setNewGameBoard() {
         do {
             Collections.shuffle(randomNumbers);//flyttar om elementen i listan
@@ -132,7 +129,6 @@ public class GameBoard extends JFrame implements ActionListener {
         }
     }
 
-
     public void addStyledButton(JButton button) {
         button.setPreferredSize(new Dimension(80, 80));
         button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -141,7 +137,6 @@ public class GameBoard extends JFrame implements ActionListener {
         buttonList.add(button);
         button.addActionListener(this);
     }
-
 
     public boolean isEmpty(JButton button) {
         return button.getText().equals(" ");
@@ -251,8 +246,6 @@ public class GameBoard extends JFrame implements ActionListener {
 
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton emptyButton = findEmptyButton();
@@ -272,6 +265,7 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
+
         if (newGame == clicked) {
             setNewGameBoard();
         } else if (gameFinish()) {
@@ -282,7 +276,5 @@ public class GameBoard extends JFrame implements ActionListener {
             text.setText(" \nCongratulation, you solve the board! ");
         }
     }
-
-
 }
 
