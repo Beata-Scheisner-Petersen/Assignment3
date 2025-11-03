@@ -118,7 +118,9 @@ public class GameBoard extends JFrame implements ActionListener {
 
 
     public void setNewGameBoard() {
-        Collections.shuffle(randomNumbers);//flyttar om elementen i listan
+        do {
+            Collections.shuffle(randomNumbers);//flyttar om elementen i listan
+        } while (!isSolvable(randomNumbers));
         for (int i = 0; i <= BUTTON_NUMBERS; i++) {
             int number = randomNumbers.get(i);
             JButton button = buttonList.get(i);
@@ -129,6 +131,7 @@ public class GameBoard extends JFrame implements ActionListener {
             }
         }
     }
+
 
     public void addStyledButton(JButton button) {
         button.setPreferredSize(new Dimension(80, 80));
@@ -216,6 +219,39 @@ public class GameBoard extends JFrame implements ActionListener {
         }
         return finish;
     }
+
+    public boolean isSolvable (List<Integer> numbers){
+        int inversions = 0;
+        int gridWidth = 4;
+
+        List<Integer> nums = new ArrayList<>(numbers);
+        nums.remove(Integer.valueOf(0));
+        // Räkna inversioner
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = i + 1; j < nums.size(); j++) {
+                if (nums.get(i) > nums.get(j)) {
+                    inversions++;
+                }
+            }
+        }
+        // Hitta positionen av tomrutan (0)
+        int blankIndex = numbers.indexOf(0);
+        int blankRowFromBottom = gridWidth - (blankIndex / gridWidth);
+                // Regler för 4x4
+        if (gridWidth % 2 == 0) {
+            if (blankRowFromBottom % 2 == 0) {
+                return inversions % 2 != 0;
+            } else {
+                return inversions % 2 == 0;
+            }
+        } else {
+            return inversions % 2 == 0;
+        }
+
+
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
