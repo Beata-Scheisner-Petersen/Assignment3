@@ -240,7 +240,6 @@ public class GameBoard extends JFrame implements ActionListener {
         }
         if (newGame == clicked) {
             setNewGameBoard();
-            return;
         } else if (gameFinish()) {
             text.setSize(20, 20);
             text.setBorder(new EtchedBorder());
