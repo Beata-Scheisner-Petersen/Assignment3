@@ -15,8 +15,8 @@ import java.util.List;
  * Fix Function for discover that user solved the board + win message - Done // Beata
  * Fix that buttons are in a random order + new game // Valeria
  * Check if code need optimize
- * * Fix bigger buttons // Beata
- * Fix a border around buttons // Beata
+ * * Fix bigger buttons - Done // Beata
+ * Fix a border around buttons - Done // Beata
  * Fix button board + color
  * Check if board is solvable
  */
