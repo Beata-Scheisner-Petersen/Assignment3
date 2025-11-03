@@ -12,9 +12,9 @@ import java.util.Random;
 /* Todo
  * Fix a reporting board that is easy to solve - Done // Beata
  * Fix Function for discover that user solved the board + win message - Done // Beata
- * Fix that buttons are in a random order + new game // Valeria
- * Check if code need optimize
- * * Fix bigger buttons - Done // Beata
+ * Fix that buttons are in a random order + new game - Done // Valeria
+ * Check if code need optimize // Beata
+ * Fix bigger buttons - Done // Beata
  * Fix a border around buttons - Done // Beata
  * Fix button board + color - Done // Beata
  * Check if board is solvable
@@ -203,11 +203,17 @@ public class GameBoard extends JFrame implements ActionListener {
 
     public boolean gameFinish() {
         boolean finish = true;
+
         for (int i = 0; i < buttonList.size(); i++) {
-            if (!(buttonList.get(i).getText().equals(String.valueOf(i + 1)))) {
-                if (i == 15 && (!(buttonList.get(i).getText().equals(" ")))) {
-                    finish = false;
-                }
+            String s1 = buttonList.get(i).getText();
+            String s2 = String.valueOf(i + 1);
+            boolean buttonNumberCheck = buttonList.get(i).getText().equals(String.valueOf(i + 1));
+            boolean button16IndexCheck = buttonList.get(15).getText().equals(" ");
+            if (i == 15 && !button16IndexCheck) {
+                finish = false;
+                break;
+            } else if (i != 15 && !buttonNumberCheck) {
+                finish = false;
             }
         }
         return finish;
@@ -232,7 +238,10 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
-        if (gameFinish()) {
+        if (newGame == clicked) {
+            setNewGameBoard();
+            return;
+        } else if (gameFinish()) {
             text.setSize(20, 20);
             text.setBorder(new EtchedBorder());
             text.setFont(new Font(Font.SERIF, Font.PLAIN, 22));
