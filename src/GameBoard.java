@@ -80,13 +80,12 @@ public class GameBoard extends JFrame implements ActionListener {
 
 
 
-
         newGame.addActionListener(this);
         newGame.setPreferredSize(new Dimension(200, 50));
         newGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         newGame.setBorder(new LineBorder(Color.BLACK, 1));
 
-        boolean reportBoard = true;
+        boolean reportBoard = false;
 
         if (reportBoard) {
             for (int i = 1; i <= BUTTON_NUMBERS - 1; i++) {
@@ -220,6 +219,7 @@ public class GameBoard extends JFrame implements ActionListener {
         JButton clicked = (JButton) e.getSource();
 
         if (newGame == clicked) {
+            text.setVisible(false);
             setNewGameBoard();
             return;
         }
