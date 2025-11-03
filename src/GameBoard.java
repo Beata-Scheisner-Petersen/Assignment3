@@ -16,7 +16,7 @@ import java.util.Random;
  * Check if code need optimize
  * * Fix bigger buttons - Done // Beata
  * Fix a border around buttons - Done // Beata
- * Fix button board + color
+ * Fix button board + color - Done // Beata
  * Check if board is solvable
  */
 
@@ -24,17 +24,26 @@ import java.util.Random;
 public class GameBoard extends JFrame implements ActionListener {
 
     private final static int BUTTON_NUMBERS = 15;
+    Random random = new Random();
+
     JPanel mainPanel = new JPanel();
     JPanel boardPanel = new JPanel(new GridLayout(4, 4));
     JPanel northPanel = new JPanel(new BorderLayout());
     JPanel southPanel = new JPanel(new BorderLayout());
     JPanel southSouthPanel = new JPanel();
     JPanel southNorthPanel = new JPanel();
+    JPanel northNorthPanel = new JPanel();
+    JPanel northSouthPanel = new JPanel();
+    JPanel northEastPanel = new JPanel();
+    JPanel northWestPanel = new JPanel();
+
     JLabel text = new JLabel(" ", JLabel.CENTER);
+
     List<JButton> buttonList = new ArrayList<>();
     List<Integer> randomNumbers = new ArrayList<>();
+
     JButton newGame = new JButton("New game");
-    Random random = new Random();
+
 
 
     public GameBoard() {
@@ -77,28 +86,29 @@ public class GameBoard extends JFrame implements ActionListener {
         newGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         newGame.setBorder(new LineBorder(Color.BLACK, 1));
 
-//        boolean reportBoard = true;
-//
-//        if (reportBoard) {
-//            for (int i = 1; i <= BUTTON_NUMBERS - 1; i++) {
-//                JButton button = new JButton(String.valueOf(i));
-//                addStyledButton(button);
-//            }
-//            JButton empty = new JButton(" ");
-//            addStyledButton(empty);
-//
-//            JButton b15 = new JButton("15");
-//            addStyledButton(b15);
-//
-//        } else  {
+        boolean reportBoard = true;
 
-        // Create empty board
-        for (int i = 0; i <= BUTTON_NUMBERS; i++) {
-            JButton button = new JButton();
-            addStyledButton(button);
-            randomNumbers.add(i);
+        if (reportBoard) {
+            for (int i = 1; i <= BUTTON_NUMBERS - 1; i++) {
+                JButton button = new JButton(String.valueOf(i));
+                addStyledButton(button);
+            }
+            JButton empty = new JButton(" ");
+            addStyledButton(empty);
+
+            JButton b15 = new JButton("15");
+            addStyledButton(b15);
+
+        } else {
+
+            // Create empty board
+            for (int i = 0; i <= BUTTON_NUMBERS; i++) {
+                JButton button = new JButton();
+                addStyledButton(button);
+                randomNumbers.add(i);
+            }
+            setNewGameBoard();
         }
-        setNewGameBoard();
 
         southSouthPanel.add(text);
         southNorthPanel.add(newGame);
