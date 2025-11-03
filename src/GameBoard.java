@@ -38,15 +38,21 @@ public class GameBoard extends JFrame implements ActionListener {
         this.add(mainPanel);
 
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(northPanel, BorderLayout.CENTER);
+        mainPanel.add(northPanel, BorderLayout.NORTH);
+        mainPanel.add(southPanel, BorderLayout.SOUTH);
+
+        northPanel.add(boardPanel, BorderLayout.CENTER);
+        northPanel.setBackground(Color.RED);
+        northPanel.setPreferredSize(new Dimension(100,100));
 
         southPanel.setPreferredSize(new Dimension(200, 200));
-        mainPanel.add(southPanel, BorderLayout.SOUTH);
         southPanel.add(southSouthPanel, BorderLayout.SOUTH);
         southPanel.add(southNorthPanel, BorderLayout.NORTH);
 
         boardPanel.setBorder(new LineBorder(Color.BLACK, 1));
-        northPanel.add(boardPanel, BorderLayout.CENTER);
+
+
+
 
         int buttonNumbers = 15;
 
