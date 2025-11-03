@@ -44,8 +44,6 @@ public class GameBoard extends JFrame implements ActionListener {
 
     JButton newGame = new JButton("New game");
 
-
-
     public GameBoard() {
 
         this.add(mainPanel);
