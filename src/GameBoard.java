@@ -233,6 +233,8 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
+        // Koden är från öppen källkod https://stackoverflow.com/questions/34570344/check-if-15-puzzle-is-solvable
+
         // Hitta positionen av den tomma rutan (0)
         int blankIndex = numbers.indexOf(0);
         int blankRowFromBottom = gridWidth - (blankIndex / gridWidth);
