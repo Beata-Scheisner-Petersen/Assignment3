@@ -1,7 +1,4 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -10,11 +7,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /* Todo
  * Fix a reporting board that is easy to solve - Done // Beata
  * Fix Function for discover that user solved the board + win message - Done // Beata
- * Check if code need optimize Valeria// Beata
+ * Check if code need optimize - Done Valeria// Beata
  * Fix bigger buttons - Done // Beata
  * Fix a border around buttons - Done // Beata
  * Fix button board + color - Done // Beata
@@ -28,6 +26,7 @@ import java.util.List;
 public class GameBoard extends JFrame implements ActionListener {
 
     private final static int BUTTON_NUMBERS = 15;
+
 
     JPanel mainPanel = new JPanel();
     JPanel boardPanel = new JPanel(new GridLayout(4, 4));
@@ -117,6 +116,7 @@ public class GameBoard extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+
     public void setNewGameBoard() {
         do {
             Collections.shuffle(randomNumbers);//flyttar om elementen i listan
@@ -132,6 +132,7 @@ public class GameBoard extends JFrame implements ActionListener {
         }
     }
 
+
     public void addStyledButton(JButton button) {
         button.setPreferredSize(new Dimension(80, 80));
         button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -140,6 +141,7 @@ public class GameBoard extends JFrame implements ActionListener {
         buttonList.add(button);
         button.addActionListener(this);
     }
+
 
     public boolean isEmpty(JButton button) {
         return button.getText().equals(" ");
@@ -168,8 +170,7 @@ public class GameBoard extends JFrame implements ActionListener {
                     buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 6 & 7
             case 5, 6 ->
-                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) ||
-                            buttonList.get(i + 4).equals(emptyButton);
+                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 8
             case 7 ->
                     buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
@@ -178,8 +179,7 @@ public class GameBoard extends JFrame implements ActionListener {
                     buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 10 & 11
             case 9, 10 ->
-                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) ||
-                            buttonList.get(i + 4).equals(emptyButton);
+                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 12
             case 11 ->
                     buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
@@ -221,7 +221,7 @@ public class GameBoard extends JFrame implements ActionListener {
         return finish;
     }
 
-    public boolean isSolvable(List<Integer> numbers) {
+    public boolean isSolvable (List<Integer> numbers){
         int inversions = 0;
         int gridWidth = 4;
 
@@ -238,7 +238,7 @@ public class GameBoard extends JFrame implements ActionListener {
         // Hitta positionen av tomrutan (0)
         int blankIndex = numbers.indexOf(0);
         int blankRowFromBottom = gridWidth - (blankIndex / gridWidth);
-        // Regler för 4x4
+                // Regler för 4x4
         if (gridWidth % 2 == 0) {
             if (blankRowFromBottom % 2 == 0) {
                 return inversions % 2 != 0;
@@ -251,6 +251,8 @@ public class GameBoard extends JFrame implements ActionListener {
 
 
     }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -271,7 +273,6 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
-
         if (newGame == clicked) {
             setNewGameBoard();
         } else if (gameFinish()) {
@@ -282,5 +283,7 @@ public class GameBoard extends JFrame implements ActionListener {
             text.setText(" \nCongratulation, you solve the board! ");
         }
     }
+
+
 }
 
