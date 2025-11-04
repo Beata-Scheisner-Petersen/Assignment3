@@ -24,7 +24,6 @@ import java.util.List;
  * Create method moveButton  + isEmtyButton () - Done //Valeria
  */
 
-
 public class GameBoard extends JFrame implements ActionListener {
 
     private final static int BUTTON_NUMBERS = 15;
@@ -235,7 +234,7 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
-        // Hitta positionen av tomrutan (0)
+        // Hitta positionen av den tomma rutan (0)
         int blankIndex = numbers.indexOf(0);
         int blankRowFromBottom = gridWidth - (blankIndex / gridWidth);
                 // Regler för 4x4
@@ -248,11 +247,7 @@ public class GameBoard extends JFrame implements ActionListener {
         } else {
             return inversions % 2 == 0;
         }
-
-
     }
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -283,7 +278,5 @@ public class GameBoard extends JFrame implements ActionListener {
             text.setText(" \nCongratulation, you solve the board! ");
         }
     }
-
-
 }
 
