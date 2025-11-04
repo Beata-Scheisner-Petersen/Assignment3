@@ -84,7 +84,7 @@ public class GameBoard extends JFrame implements ActionListener {
         newGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         newGame.setBorder(new LineBorder(Color.BLACK, 1));
 
-        boolean reportBoard = false;
+        boolean reportBoard = true;
 
         if (reportBoard) {
             for (int i = 1; i <= BUTTON_NUMBERS - 1; i++) {
