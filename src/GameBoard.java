@@ -21,7 +21,7 @@ import java.util.List;
  * Check if board is solvable -Done//Valeria
  * Create empty board - Done//Valeria
  * Fix that buttons are in a random order, create NewGame button + setNewGameBoard() -Done // Valeria
- * Create method moveButton  + isEmtyButton () - Done //Valeria
+ * Create method moveButton  + isEmptyButton () - Done //Valeria
  */
 
 public class GameBoard extends JFrame implements ActionListener {
@@ -157,7 +157,7 @@ public class GameBoard extends JFrame implements ActionListener {
 
 
     public boolean checkIfMoveIsPossible(int i, JButton emptyButton) {
-        boolean moveIsPossible = switch (i) {
+        return switch (i) {
             // button 1
             case 0 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 2 & 3
@@ -192,7 +192,6 @@ public class GameBoard extends JFrame implements ActionListener {
             case 15 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
             default -> false;
         };
-        return moveIsPossible;
     }
 
     public void moveButton(JButton clickedButton, JButton emptyButton) {
