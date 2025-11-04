@@ -1,4 +1,7 @@
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -7,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+
 
 /* Todo
  * Fix a reporting board that is easy to solve - Done // Beata
@@ -26,7 +29,6 @@ import java.util.Random;
 public class GameBoard extends JFrame implements ActionListener {
 
     private final static int BUTTON_NUMBERS = 15;
-
 
     JPanel mainPanel = new JPanel();
     JPanel boardPanel = new JPanel(new GridLayout(4, 4));
@@ -251,6 +253,8 @@ public class GameBoard extends JFrame implements ActionListener {
         // Koden kommer från öppen källkod: https://stackoverflow.com/questions/34570344/check-if-15-puzzle-is-solvable
 
     }
+
+
 
 
 
