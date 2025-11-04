@@ -1,4 +1,7 @@
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -7,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /* Todo
  * Fix a reporting board that is easy to solve - Done // Beata
@@ -24,7 +26,6 @@ import java.util.Random;
 public class GameBoard extends JFrame implements ActionListener {
 
     private final static int BUTTON_NUMBERS = 15;
-    Random random = new Random();
 
     JPanel mainPanel = new JPanel();
     JPanel boardPanel = new JPanel(new GridLayout(4, 4));
@@ -76,8 +77,6 @@ public class GameBoard extends JFrame implements ActionListener {
         boardPanel.setBorder(new LineBorder(Color.BLACK, 1));
         boardPanel.setMaximumSize(new Dimension(100, 100));
 
-
-
         newGame.addActionListener(this);
         newGame.setPreferredSize(new Dimension(200, 50));
         newGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -116,7 +115,6 @@ public class GameBoard extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-
     public void setNewGameBoard() {
         do {
             Collections.shuffle(randomNumbers);//flyttar om elementen i listan
@@ -132,7 +130,6 @@ public class GameBoard extends JFrame implements ActionListener {
         }
     }
 
-
     public void addStyledButton(JButton button) {
         button.setPreferredSize(new Dimension(80, 80));
         button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -141,7 +138,6 @@ public class GameBoard extends JFrame implements ActionListener {
         buttonList.add(button);
         button.addActionListener(this);
     }
-
 
     public boolean isEmpty(JButton button) {
         return button.getText().equals(" ");
@@ -168,33 +164,27 @@ public class GameBoard extends JFrame implements ActionListener {
             // button 1
             case 0 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 2 & 3
-            case 1, 2 ->
-                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            case 1, 2 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 4
             case 3 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 5
-            case 4 ->
-                    buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            case 4 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 6 & 7
-            case 5, 6 ->
-                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            case 5, 6 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) ||
+                    buttonList.get(i + 4).equals(emptyButton);
             // button 8
-            case 7 ->
-                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            case 7 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 9
-            case 8 ->
-                    buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            case 8 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 10 & 11
-            case 9, 10 ->
-                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            case 9, 10 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) ||
+                            buttonList.get(i + 4).equals(emptyButton);
             // button 12
-            case 11 ->
-                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
+            case 11 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 13
             case 12 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
             // button 14 & 15
-            case 13, 14 ->
-                    buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
+            case 13, 14 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
             // button "16"
             case 15 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
             default -> false;
@@ -251,8 +241,6 @@ public class GameBoard extends JFrame implements ActionListener {
 
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton emptyButton = findEmptyButton();
@@ -272,6 +260,7 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
+
         if (newGame == clicked) {
             setNewGameBoard();
         } else if (gameFinish()) {
@@ -282,7 +271,5 @@ public class GameBoard extends JFrame implements ActionListener {
             text.setText(" \nCongratulation, you solve the board! ");
         }
     }
-
-
 }
 
