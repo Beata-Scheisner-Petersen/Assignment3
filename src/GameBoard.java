@@ -267,9 +267,7 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
-        if (newGame == clicked) {
-            setNewGameBoard();
-        } else if (gameFinish()) {
+        if (gameFinish()) {
             text.setVisible(true);
             text.setSize(20, 20);
             text.setBorder(new EtchedBorder());
