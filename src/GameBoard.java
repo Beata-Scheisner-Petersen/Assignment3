@@ -24,6 +24,7 @@ import java.util.List;
  * Create method moveButton  + isEmptyButton () - Done //Valeria
  */
 
+
 public class GameBoard extends JFrame implements ActionListener {
 
     private final static int BUTTON_NUMBERS = 15;
@@ -116,7 +117,6 @@ public class GameBoard extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-
     public void setNewGameBoard() {
         do {
             Collections.shuffle(randomNumbers);//flyttar om elementen i listan
@@ -132,7 +132,6 @@ public class GameBoard extends JFrame implements ActionListener {
         }
     }
 
-
     public void addStyledButton(JButton button) {
         button.setPreferredSize(new Dimension(80, 80));
         button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -141,7 +140,6 @@ public class GameBoard extends JFrame implements ActionListener {
         buttonList.add(button);
         button.addActionListener(this);
     }
-
 
     public boolean isEmpty(JButton button) {
         return button.getText().equals(" ");
@@ -233,8 +231,6 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
-        // Koden är från öppen källkod https://stackoverflow.com/questions/34570344/check-if-15-puzzle-is-solvable
-
         // Hitta positionen av den tomma rutan (0)
         int blankIndex = numbers.indexOf(0);
         int blankRowFromBottom = gridWidth - (blankIndex / gridWidth);
@@ -248,8 +244,8 @@ public class GameBoard extends JFrame implements ActionListener {
         } else {
             return inversions % 2 == 0;
         }
+        // Koden kommer från öppen källkod: https://stackoverflow.com/questions/34570344/check-if-15-puzzle-is-solvable
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton emptyButton = findEmptyButton();
