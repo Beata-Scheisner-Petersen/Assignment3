@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /* Todo
  * Fix a reporting board that is easy to solve - Done // Beata
  * Fix Function for discover that user solved the board + win message - Done // Beata
@@ -22,9 +21,8 @@ import java.util.List;
  * Check if board is solvable -Done//Valeria
  * Create empty board - Done//Valeria
  * Fix that buttons are in a random order, create NewGame button + setNewGameBoard() -Done // Valeria
- * Create method moveButton  + isEmtyButton () - Done //Valeria
+ * Create method moveButton  + isEmptyButton () - Done //Valeria
  */
-
 
 public class GameBoard extends JFrame implements ActionListener {
 
@@ -159,7 +157,7 @@ public class GameBoard extends JFrame implements ActionListener {
 
 
     public boolean checkIfMoveIsPossible(int i, JButton emptyButton) {
-        boolean moveIsPossible = switch (i) {
+        return switch (i) {
             // button 1
             case 0 -> buttonList.get(i + 1).equals(emptyButton) || buttonList.get(i + 4).equals(emptyButton);
             // button 2 & 3
@@ -194,7 +192,6 @@ public class GameBoard extends JFrame implements ActionListener {
             case 15 -> buttonList.get(i - 1).equals(emptyButton) || buttonList.get(i - 4).equals(emptyButton);
             default -> false;
         };
-        return moveIsPossible;
     }
 
     public void moveButton(JButton clickedButton, JButton emptyButton) {
@@ -209,8 +206,7 @@ public class GameBoard extends JFrame implements ActionListener {
         boolean finish = true;
 
         for (int i = 0; i < buttonList.size(); i++) {
-            String s1 = buttonList.get(i).getText();
-            String s2 = String.valueOf(i + 1);
+
             boolean buttonNumberCheck = buttonList.get(i).getText().equals(String.valueOf(i + 1));
             boolean button16IndexCheck = buttonList.get(15).getText().equals(" ");
             if (i == 15 && !button16IndexCheck) {
@@ -237,7 +233,7 @@ public class GameBoard extends JFrame implements ActionListener {
                 }
             }
         }
-        // Hitta positionen av tomrutan (0)
+        // Hitta positionen av den tomma rutan (0)
         int blankIndex = numbers.indexOf(0);
         int blankRowFromBottom = gridWidth - (blankIndex / gridWidth);
                 // Regler för 4x4
@@ -250,13 +246,7 @@ public class GameBoard extends JFrame implements ActionListener {
         } else {
             return inversions % 2 == 0;
         }
-        // Koden kommer från öppen källkod: https://stackoverflow.com/questions/34570344/check-if-15-puzzle-is-solvable
-
     }
-
-
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -285,7 +275,5 @@ public class GameBoard extends JFrame implements ActionListener {
             text.setText(" \nCongratulation, you solve the board! ");
         }
     }
-
-
 }
 
