@@ -29,23 +29,23 @@ public class GameBoard extends JFrame implements ActionListener {
 
     private final static int BUTTON_NUMBERS = 15;
 
-    JPanel mainPanel = new JPanel();
-    JPanel boardPanel = new JPanel(new GridLayout(4, 4));
-    JPanel northPanel = new JPanel(new BorderLayout());
-    JPanel southPanel = new JPanel(new BorderLayout());
-    JPanel southSouthPanel = new JPanel();
-    JPanel southNorthPanel = new JPanel();
-    JPanel northNorthPanel = new JPanel();
-    JPanel northSouthPanel = new JPanel();
-    JPanel northEastPanel = new JPanel();
-    JPanel northWestPanel = new JPanel();
+    private JPanel mainPanel = new JPanel();
+    private JPanel boardPanel = new JPanel(new GridLayout(4, 4));
+    private JPanel northPanel = new JPanel(new BorderLayout());
+    private JPanel southPanel = new JPanel(new BorderLayout());
+    private JPanel southSouthPanel = new JPanel();
+    private JPanel southNorthPanel = new JPanel();
+    private JPanel northNorthPanel = new JPanel();
+    private JPanel northSouthPanel = new JPanel();
+    private JPanel northEastPanel = new JPanel();
+    private JPanel northWestPanel = new JPanel();
 
-    JLabel text = new JLabel(" ", JLabel.CENTER);
+    private JLabel text = new JLabel(" ", JLabel.CENTER);
 
-    List<JButton> buttonList = new ArrayList<>();
-    List<Integer> randomNumbers = new ArrayList<>();
+    private List<JButton> buttonList = new ArrayList<>();
+    private List<Integer> randomNumbers = new ArrayList<>();
 
-    JButton newGame = new JButton("New game");
+    private JButton newGame = new JButton("New game");
 
     public GameBoard() {
 
@@ -84,7 +84,7 @@ public class GameBoard extends JFrame implements ActionListener {
         newGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         newGame.setBorder(new LineBorder(Color.BLACK, 1));
 
-        boolean reportBoard = true;
+        boolean reportBoard = false;
 
         if (reportBoard) {
             for (int i = 1; i <= BUTTON_NUMBERS - 1; i++) {
