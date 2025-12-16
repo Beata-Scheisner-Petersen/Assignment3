@@ -35,4 +35,4 @@ You can find all the information you need [here](https://docs.github.com/en/repo
 
 #### How do I make a clone in my IDE?
 
-You can find all the information you need [here](https://blog.jetbrains.com/idea/2020/10/clone-a-project-from-github/) (for ItelliJ)
+You can find all the information you need [here](https://blog.jetbrains.com/idea/2020/10/clone-a-project-from-github/) (for IntelliJ)
